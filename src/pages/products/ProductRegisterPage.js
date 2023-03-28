@@ -12,8 +12,12 @@ const ProductRegisterPage = () => {
     }
   
 
-    return ( 
+    return (
+      <>
+
         <RegisterComponent moveToList={moveToList}></RegisterComponent>
+      </> 
+        
      );
 }
  

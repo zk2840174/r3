@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { getProductList } from "../../apis/productsAPI";
+import CustomPagination from "../commons/CustomPagination";
 
 
 const initState = {
@@ -24,7 +25,7 @@ const ListComponent = ({query, movePage}) => {
 
   useEffect(() => {
 
-    getProductList(query.page, query.size).then(data => {
+    getProductList(query.page, query.size, query.typeStr, query.keyword).then(data => {
       console.log(data)
       setServerData(data)
     })
@@ -69,7 +70,10 @@ const ListComponent = ({query, movePage}) => {
             })}
             
           </tbody>
-        </table>
+        </table>      
+      </div>
+      <div className="m-1 w-full justify-center flex mt-10 ">
+        <CustomPagination {...serverData} onPageClick={onPageChange}></CustomPagination>
       </div>
     </div>
   );

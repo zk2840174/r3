@@ -7,8 +7,8 @@ import CustomModal from "../commons/CustomModal";
 
 
 const initState = {
-  pname: 'Sample Product',
-  price: 5900,
+  pname: 'Product',
+  price: 0,
   files:null
 }
 

@@ -16,7 +16,7 @@ const MaingPage = () => {
 
     return ( 
         <BasicLayout>
-            <h1 onClick={() => toggleModal(true) }>Main Page</h1>
+            <h1>Main Page</h1>
 
 
         </BasicLayout>

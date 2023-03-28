@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
 
 
@@ -13,7 +13,12 @@ const ProductIndexPage = () => {
              
           </div>
           <div className="w-4/4 justify-end flex">
-                <div className=" font-medium pr-6 pt-6">Register</div>
+                <div className=" font-medium pr-6 pt-6">
+                  <Link to={"/products/register"}>Register</Link>
+                </div>
+                <div className=" font-medium pr-6 pt-6">
+                  <Link to={"/products/list"}>List</Link>
+                </div>
           </div>
 
           <Outlet></Outlet>
