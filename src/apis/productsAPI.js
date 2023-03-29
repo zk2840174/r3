@@ -17,9 +17,35 @@ export const postProduct = async (product) => {
 
   const header = {headers: {"Content-Type": "multipart/form-data"}}
 
-
   const res = await axios.post(`${host}`, product, header)
 
   return res.data
+
+}
+
+export const getProduct = async (pno) => {
+
+  const res = await axios.get(`${host}/${pno}`)
+
+  return res.data
+
+}
+
+export const putProduct = async (pno, product) => {
+
+  const header = {headers: {"Content-Type": "multipart/form-data"}}
+
+  const res = await axios.put(`${host}/${pno}`, product, header)
+
+  return res.data
+
+}
+
+export const deleteProduct = async (pno) => {
+
+  const res = await axios.delete(`${host}/${pno}`)
+
+  return res.data
+
 
 }

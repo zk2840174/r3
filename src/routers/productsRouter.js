@@ -10,6 +10,8 @@ const ProductRegister = lazy(() => import('../pages/products/ProductRegisterPage
 
 const ProductRead = lazy(() => import('../pages/products/ProductReadPage'))
 
+const ProductModify = lazy(() => import('../pages/products/ProductModifyPage'))
+
 
 const productsRouter = () => {
 
@@ -29,6 +31,10 @@ const productsRouter = () => {
         {
             path: "read",
             element: <Suspense fallback={Loading}><ProductRead/></Suspense>
+        }, 
+        {
+            path: "modify",
+            element: <Suspense fallback={Loading}><ProductModify/></Suspense>
         }
     ]
 

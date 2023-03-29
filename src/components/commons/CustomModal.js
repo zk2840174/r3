@@ -34,7 +34,7 @@ const CustomModal = ({openNow, callback, title, content}) => {
             </div>
             <div className="justify-end flex m-2">
                 <button 
-                className="rounded bg-primary px-4  text-white" 
+                className="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-lg text-white" 
                 onClick={handleClickClose}>Close Modal</button>
             </div>
         </div>
