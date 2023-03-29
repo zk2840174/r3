@@ -2,10 +2,14 @@ import { lazy, Suspense } from "react"
 import { Navigate } from "react-router-dom"
 
 
-const ProductList = lazy(() => import('../pages/products/ProductListPage'))
 const Loading = <div>Loading....</div>
 
+const ProductList = lazy(() => import('../pages/products/ProductListPage'))
+
 const ProductRegister = lazy(() => import('../pages/products/ProductRegisterPage'))
+
+const ProductRead = lazy(() => import('../pages/products/ProductReadPage'))
+
 
 const productsRouter = () => {
 
@@ -22,6 +26,10 @@ const productsRouter = () => {
             path: "register",
             element: <Suspense fallback={Loading}><ProductRegister/></Suspense>
         },
+        {
+            path: "read",
+            element: <Suspense fallback={Loading}><ProductRead/></Suspense>
+        }
     ]
 
 }

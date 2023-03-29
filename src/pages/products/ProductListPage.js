@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom"
 import ListComponent from "../../components/products/ListComponent"
 import ListSearchComponent from "../../components/products/ListSearchComponent"
 import BasicLayout from "../../layouts/BasicLayout"
@@ -25,13 +25,9 @@ const ProudctListPage = () => {
 
   const moveToRead = (pno) => {
 
-    setSearchParams({ pno, page,size, typeStr, keyword, date: Date.now()})
+    const queryObj = createSearchParams({ pno, page,size, typeStr, keyword, date: Date.now()})
 
-  }
-
-  const moveToRegister = () => {
-
-    navigate("/products/register")
+    navigate({pathname:'/products/read' ,  search: queryObj.toString() })
 
   }
 
@@ -42,7 +38,7 @@ const ProudctListPage = () => {
       
       <ListSearchComponent moveToRead={moveToRead}></ListSearchComponent>
 
-      <ListComponent query={queryObj} movePage={movePage}/>
+      <ListComponent query={queryObj} movePage={movePage} moveToRead={moveToRead}/>
     </>
     );
 }

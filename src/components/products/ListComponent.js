@@ -20,7 +20,7 @@ const initState = {
   }
 
 
-const ListComponent = ({query, movePage}) => {
+const ListComponent = ({query, movePage, moveToRead}) => {
     const [serverData, setServerData] = useState(initState)
 
   useEffect(() => {
@@ -57,12 +57,18 @@ const ListComponent = ({query, movePage}) => {
               const imageFile = images[0].thumb
 
               return (
-            <tr key={product.pno} className="border-b dark:border-neutral-500">
+            <tr 
+            key={product.pno} 
+            className="border-b dark:border-neutral-500"
+            onClick={() => moveToRead(product.pno)}
+            >
               <td className="whitespace-nowrap px-6 py-4 font-medium">{product.pno}</td>
               <td className="whitespace-nowrap px-6 py-4">
                 <img src={'http://localhost:8080/upload/view/'+ imageFile}></img>
               </td>
-              <td className="whitespace-nowrap px-6 py-4">{product.pname}</td>
+              <td className="whitespace-nowrap px-6 py-4">
+                {product.pname}
+              </td>
               <td className="whitespace-nowrap px-6 py-4">{product.price}</td>
               <td className="whitespace-nowrap px-6 py-4">{product.status}</td>
             </tr>
