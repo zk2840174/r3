@@ -7,7 +7,7 @@ const ProductReadPage = () => {
 
   const navigate = useNavigate()
 
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const page = searchParams.get("page") ||1
   const size = searchParams.get("size") || 10
   const typeStr = searchParams.get("typeStr") ||''
@@ -15,7 +15,7 @@ const ProductReadPage = () => {
 
   const pno = searchParams.get("pno")
 
-  const queryObj = {page,size , typeStr, keyword}
+
 
   const handleClickList = (e) => {
 
@@ -36,9 +36,9 @@ const ProductReadPage = () => {
 
   return ( 
     <>
+
       <ReadComponent pno={pno}></ReadComponent>
       <div className="bg-blue-200 w-full justify-end  flex p-4">
-
       <button type="button" 
         className="inline-block rounded  bg-green-400 px-6 pt-2.5 mr-10 pb-2 text-lg text-white"
         onClick={handleClickModify}

@@ -6,8 +6,8 @@ const BasicNavbar = () => {
     
     <nav id='navbar' className="h-1/5 col-span-12 md:col-span-8 flex ">
 
-      <div className="w-1/4  bg-green-400 p-4 font-extrabold">
-          <h1>Logo</h1>
+      <div className="w-1/4  bg-blue-500 p-4 font-extrabold">
+          <h1 className="text-3xl  text-white">gugucoding</h1>
       </div>
 
       <div className="w-2/4 bg-gray-500" >
@@ -25,7 +25,12 @@ const BasicNavbar = () => {
       </div>
 
       <div className="w-1/4 flex justify-end bg-orange-300 p-4 font-medium">
-          <div>Login</div>
+          <div className=" text-sm m-1 rounded" >
+            <Link to={'/login'}>Login</Link>
+          </div>
+          <div className=" text-sm m-1 rounded">
+            <Link to={'/join'}>Join</Link>
+          </div>
       </div>
 
     </nav>

@@ -1,15 +1,12 @@
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+import CheckLogin from "../../components/commons/CheckLogin";
 import ModifyComponent from "../../components/products/ModifyComponent";
 
 const ProductModifyPage = () => {
 
   const navigate = useNavigate()
 
-  const [searchParams, setSearchParams] = useSearchParams()
-  const page = searchParams.get("page") ||1
-  const size = searchParams.get("size") || 10
-  const typeStr = searchParams.get("typeStr") ||''
-  const keyword = searchParams.get("keyword") ||''
+  const [searchParams] = useSearchParams()
 
   const pno = searchParams.get("pno")
 
@@ -22,13 +19,14 @@ const ProductModifyPage = () => {
 
   const afterDelete = () => {
   
-    const queryObj = createSearchParams({ page:1 , size:size, date: Date.now()})
+    const queryObj = createSearchParams({ page:1 , size:10, date: Date.now()})
 
     navigate({pathname:'/products/list' ,  search: queryObj.toString() })
   }
 
   return ( 
     <>
+      <CheckLogin></CheckLogin>
       <ModifyComponent pno = {pno} afterDelete={afterDelete} afterModify={afterModify} ></ModifyComponent>
 
     </>

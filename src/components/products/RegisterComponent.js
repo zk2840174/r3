@@ -89,7 +89,7 @@ const RegisterComponent = ({moveToList}) => {
       <div className="flex justify-center">
         <div className="relative mb-4 flex w-full flex-wrap  justify-end">
         <button type="button" 
-        className="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium leading-normal text-white "
+        className="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xl  text-white "
         onClick={handleClickRegister}
         >
           Register</button>

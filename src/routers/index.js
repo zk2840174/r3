@@ -12,6 +12,9 @@ const IndexTodos = lazy(() => import("../pages/todos/TodoIndexPage"))
 
 const Loading = <div>Loading....</div>
 
+const MemberJoin  = lazy(() => import("../pages/member/MemberJoinPage"))
+const MemberLogin  = lazy(() => import("../pages/member/MemberLoginPage"))
+
 
 const router = createBrowserRouter([
 
@@ -31,6 +34,15 @@ const router = createBrowserRouter([
         path: "todos",
         element:<Suspense fallback={Loading}><IndexTodos/></Suspense>,
         children: todosRouter()
+    },
+
+    {
+        path: "join",
+        element: <Suspense fallback={Loading}><MemberJoin/></Suspense>
+    },
+    {
+        path: "login",
+        element: <Suspense fallback={Loading}><MemberLogin/></Suspense>
     }
 
 ])
