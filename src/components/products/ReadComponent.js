@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProduct } from "../../apis/productsAPI";
+import { Navigate } from "react-router-dom";
 
 
 const initState = {
@@ -14,14 +15,28 @@ const ReadComponent = ({pno}) => {
 
   const [product, setProduct] = useState(initState)
 
+  const [requireLogin, setRequireLogin] = useState(false)
+
   useEffect(() => {
 
     getProduct(pno).then(data => {
 
       setProduct(data)
 
+    }).catch(err => {
+      console.log(err)
+      setRequireLogin(true)
     })
   },[pno])
+
+  if(requireLogin){
+    return(
+      <>
+      {alert("Login....please")}
+      <Navigate to="/login" replace={true}></Navigate>
+      </>
+    )
+  }
 
 
   return (

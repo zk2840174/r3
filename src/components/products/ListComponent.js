@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { getProductList } from "../../apis/productsAPI";
 import CustomPagination from "../commons/CustomPagination";
+import { Navigate } from "react-router-dom";
 
 
 const initState = {
@@ -21,23 +22,40 @@ const initState = {
 
 
 const ListComponent = ({query, movePage, moveToRead}) => {
-    const [serverData, setServerData] = useState(initState)
+  
+  const [serverData, setServerData] = useState(initState)
+
+  const [requireLogin, setRequireLogin] = useState(false)
 
   useEffect(() => {
 
     getProductList(query.page, query.size, query.typeStr, query.keyword).then(data => {
       console.log(data)
       setServerData(data)
+    }).catch(err => {
+      console.log(err)
+      setRequireLogin(true)
     })
 
   },[query])
 
+  if(requireLogin){
+    return(
+      <>
+      {alert("Login....please")}
+      <Navigate to="/login" replace={true}></Navigate>
+      </>
+    )
+  }
+  
   const onPageChange = (pageNum) => {
 
     console.log(pageNum)
 
     movePage(pageNum)
-  }  
+  }
+  
+  
   return ( 
     <div className = ""> 
       <div className="flex justify-center mt-10 bg-blue-100">        

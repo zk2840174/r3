@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postServerLogin } from "../../reducers/loginSlice";
+import KakaoButtonComponent from "./KakaoButtonComponent";
 
 
 const initState = {
@@ -64,6 +65,14 @@ const LoginComponent = () => {
           Login</button>
         </div>
       </div>
+
+      <div className="flex justify-center">
+        <div className="relative mb-4 flex w-3/5 flex-wrap  justify-center">
+          <KakaoButtonComponent></KakaoButtonComponent>
+        </div>
+      </div>
+
+
 
     </div>
    );

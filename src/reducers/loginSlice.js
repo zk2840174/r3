@@ -4,19 +4,20 @@ import axios from "axios";
 
 import { Cookies } from "react-cookie";
 
-const cookies = new Cookies()
-
 const memberState = {
   email: null,
   accessToken: null,
-  refreshToken: null
+  refreshToken: null,
+  social:false
 }
 
 const loadCookie = () => {
 
   console.log("load cookie from browser")
 
-  const result = cookies.get("login")
+  const cookies = new Cookies()
+
+  const result = cookies.get("login", {path:"/"})
 
   if(!result){
       return memberState
@@ -35,9 +36,35 @@ export const postServerLogin = createAsyncThunk('postServerLogin', async(member)
 
 })
 
+export const kakaoServerLogin = createAsyncThunk('kakaoServerLogin', async(authCode) => {
+
+  const res = await axios.get(`http://localhost:8080/kakao/login?authCode=${authCode}`)
+
+  return res.data
+
+
+})
+
+
 const loginSlice = createSlice({
   name:'loginSlice',
   initialState: loadCookie(),
+  reducers: {
+    deleteLogin: (state) => {
+    
+      const cookies = new Cookies()
+
+      console.log("delete login cookie and reset ")
+      cookies.remove('login' , {path: "/", maxAge:0})
+      cookies.remove("accessToken", {path: "/", maxAge:0})
+      cookies.remove("refreshToken", {path: "/", maxAge:0})
+
+      console.log(memberState)
+
+      return {...memberState}
+      
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase( postServerLogin.fulfilled, (state, action) => {
 
@@ -47,14 +74,38 @@ const loginSlice = createSlice({
       const expires = new Date()
       expires.setUTCDate(expires.getUTCDate() + 30 )
 
-      cookies.set("login", JSON.stringify(action.payload), expires)
+      const cookies = new Cookies()
+      cookies.set("login", action.payload, {expires, path:"/"})
+      cookies.set("accessToken", action.payload.accessToken, {expires, path:"/"})
+      cookies.set("refreshToken", action.payload.refreshToken, {expires, path:"/"})
 
       //return value will be next state
       return action.payload
 
     })
+
+    .addCase( kakaoServerLogin.fulfilled, (state, action) => {
+
+
+      console.log("kakaoServerLogin.fulfilled")
+
+      console.log(action.payload)
+
+      //save with cookie 
+      const expires = new Date()
+      expires.setUTCDate(expires.getUTCDate() + 30 )
+
+      const cookies = new Cookies()
+      cookies.set("login", action.payload, {expires, path:"/"})
+      cookies.set("accessToken", action.payload.accessToken, {expires, path:"/"})
+      cookies.set("refreshToken", action.payload.refreshToken, {expires, path:"/"})
+
+      return action.payload
+
+    })
+
   }
 })
-
+export const {deleteLogin} = loginSlice.actions
 
 export default loginSlice.reducer

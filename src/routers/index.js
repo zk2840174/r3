@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import productsRouter from "./productsRouter";
 import todosRouter from "./todosRouter";
+import KakaoLoginRedirect from "../pages/oauth/KakaoLoginRedirect";
 
 
 const Main = lazy(() => import("../pages/MainPage"))
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
     {
         path: "login",
         element: <Suspense fallback={Loading}><MemberLogin/></Suspense>
+    },
+    {
+        path: "oauth/kakao",
+        element: <KakaoLoginRedirect></KakaoLoginRedirect>
     }
 
 ])

@@ -26,10 +26,10 @@ const CustomModal = ({openNow, callback, title, content}) => {
 
         <div className="absolute  bg-white shadow dark:bg-gray-700 opacity-100 w-1/4 rounded  mt-10 mb-10 px-6 min-w-[600px]">
 
-            <div className="px-6 justify-center text-center bg-warning-400 mt-6">
+            <div className="justify-center text-center bg-warning-400 mt-6 mb-6 text-2xl">
                 <h1>{title}</h1>
             </div>
-            <div className="h-24 justify-center text-center">
+            <div className="text-4xl justify-center text-center">
                 <h2>{content}</h2>
             </div>
             <div className="justify-end flex m-2">
